@@ -1,0 +1,22 @@
+const express = require('express')
+const productRoute = require('../routers/productRoute.js')
+const orderRoute = require('../routers/orderRoute.js')
+const categoryRoute = require('../routers/productCatRoute.js')
+const blogRoute = require('../routers/blogRoute.js')
+const userRoute = require('../routers/userRoute.js')
+const cartRoute = require('../routers/cartRoute.js')
+const blogCatRoute = require('../routers/blogCatRoute.js')
+const { errorHandler, notFound } = require('../middlewares/errorMiddleware.js')
+
+module.exports = (app) => {
+    app.use(express.json())
+    app.use('/api/product', productRoute)
+    app.use('/api/blog', blogRoute)
+    app.use('/api/order', orderRoute)
+    app.use('/api/cart', cartRoute)
+    app.use('/api/category', categoryRoute)
+    app.use('/api/blogCategory', blogCatRoute)
+    app.use('/api/auth', userRoute)
+    app.use(notFound)
+    app.use(errorHandler)
+}
