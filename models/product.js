@@ -17,9 +17,10 @@ const productSchema = new Schema(
     ],
     category: { type: Schema.Types.ObjectId, ref: "Category" },
     tags: String,
+    rating: Number,
     ratings: [
       {
-        star: { type: Number, max:5 },
+        star: { type: Number, max: 5 },
         comment: String,
         postedby: { type: Schema.Types.ObjectId, ref: "User" },
       },
@@ -31,7 +32,7 @@ const productSchema = new Schema(
 );
 
 const Product = model("Product", productSchema);
- 
+
 const validateProduct = (product) => {
   const schema = Joi.object({
     title: Joi.string(),
