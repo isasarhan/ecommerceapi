@@ -25,6 +25,7 @@ const productSchema = new Schema(
       },
     ],
     price: { type: Number },
+    sale: { type: Number },
   },
   { timestamps: true }
 );

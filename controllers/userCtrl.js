@@ -1,7 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const { User, validateUser } = require("../models/user.js");
 
-
 const register = asyncHandler(async (req, res) => {
     const { error } = validateUser(req.body)
     if (error) return res.send(error.details[0].message).status(400)
