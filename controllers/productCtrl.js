@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { Product, validateProduct } = require("../models/product");
 const validateMongoDbId = require("../utils/validateMongodbId.js");
+var url = require('url');
 
 const getProductById = asyncHandler(async (req, res) => {
     const id = req.params.id
@@ -13,6 +14,14 @@ const getAllProducts = asyncHandler(async (req, res) => {
     const products = await Product.find()
     res.json(products)
 })
+
+function fullUrl(req, imageName) {
+    return url.format({
+        protocol: req.protocol,
+        host: req.get('host'),
+        pathname: `/uploads/${imageName}`
+    });
+}
 const addProduct = asyncHandler(async (req, res) => {
 
     const { errors } = validateProduct(req.body);
@@ -23,7 +32,7 @@ const addProduct = asyncHandler(async (req, res) => {
             slug: req.body.slug,
             shortDescription: req.body.shortDescription,
             longDescription: req.body.longDescription,
-            featuredImage: req.file ? req.file.filename : " ",
+            featuredImage: req.file ? fullUrl(req, req.file.filename) : " ",
             price: req.body.price,
             sale: req.body.sale,
             rating: req.body.rating,
