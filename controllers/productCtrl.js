@@ -14,9 +14,23 @@ const getAllProducts = asyncHandler(async (req, res) => {
     res.json(products)
 })
 const addProduct = asyncHandler(async (req, res) => {
+
     const { errors } = validateProduct(req.body);
     if (errors) return res.send(errors.details[0].message).status(400);
-    const newProduct = await Product.create(req.body);
+    const newProduct = new Product(
+        {
+            title: req.body.title,
+            slug: req.body.slug,
+            shortDescription: req.body.shortDescription,
+            longDescription: req.body.longDescription,
+            featuredImage: req.file ? req.file.filename : " ",
+            price: req.body.price,
+            sale: req.body.sale,
+            rating: req.body.rating,
+            ratings: req.body.ratings,
+        }
+    );
+    await newProduct.save()
     res.json(newProduct).sendStatus(200)
 })
 const updateProduct = asyncHandler(async (req, res) => {

@@ -8,7 +8,7 @@ const productSchema = new Schema(
     slug: { type: String, unique: true, lowercase: true },
     shortDescription: { type: String },
     longDescription: { type: String },
-    featuredImage: { url: String },
+    featuredImage: { type: String },
     images: [
       {
         _id: false,
