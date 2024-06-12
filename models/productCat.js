@@ -10,7 +10,7 @@ const categorySchema = new Schema(
   },
   { timestamps: true }
 );
-
+ 
 const Category = model("Category", categorySchema);
 
 const validateCategory = (category) => {

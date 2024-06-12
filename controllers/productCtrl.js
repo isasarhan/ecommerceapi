@@ -37,6 +37,7 @@ const addProduct = asyncHandler(async (req, res) => {
             sale: req.body.sale,
             rating: req.body.rating,
             ratings: req.body.ratings,
+            category:req.body.category
         }
     );
     await newProduct.save()

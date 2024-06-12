@@ -15,7 +15,11 @@ const productSchema = new Schema(
         url: String,
       },
     ],
-    category: { type: Schema.Types.ObjectId, ref: "Category" },
+    category: {
+      _id: false,
+      categoryid: { type: Schema.Types.ObjectId, ref: "Category" },
+      title: String
+    },
     tags: String,
     rating: Number,
     ratings: [
