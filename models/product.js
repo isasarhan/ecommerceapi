@@ -31,6 +31,7 @@ const productSchema = new Schema(
     ],
     price: { type: Number },
     sale: { type: Number },
+    author: String
   },
   { timestamps: true }
 );
