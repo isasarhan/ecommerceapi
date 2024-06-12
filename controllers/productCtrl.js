@@ -23,7 +23,7 @@ const addProduct = asyncHandler(async (req, res) => {
             slug: req.body.slug,
             shortDescription: req.body.shortDescription,
             longDescription: req.body.longDescription,
-            featuredImage: req.file ? req.file.path : " ",
+            featuredImage: req.file ? req.file.filename : " ",
             price: req.body.price,
             sale: req.body.sale,
             rating: req.body.rating,
