@@ -30,7 +30,7 @@ const productSchema = new Schema(
       },
     ],
     price: { type: Number },
-    sale: { type: Number },
+    sale: { type: Number, default:0 },
     author: String
   },
   { timestamps: true }

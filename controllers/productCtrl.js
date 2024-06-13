@@ -32,14 +32,14 @@ const addProduct = asyncHandler(async (req, res) => {
             slug: req.body.slug,
             shortDescription: req.body.shortDescription,
             longDescription: req.body.longDescription,
-            featuredImage: req.file ? fullUrl(req, req.file.filename) : " ",
+            featuredImage: req.file ? fullUrl(req, req.file.filename) : "",
             price: req.body.price,
             sale: req.body.sale,
             rating: req.body.rating,
             ratings: req.body.ratings,
             category:req.body.category
         }
-    );
+    ); 
     await newProduct.save()
     res.json(newProduct).sendStatus(200)
 })

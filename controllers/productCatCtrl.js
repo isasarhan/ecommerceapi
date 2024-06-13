@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { Category, validateCategory } = require("../models/productCat.js");
 const validateMongoDbId = require("../utils/validateMongodbId.js");
+var url = require('url');
 
 const getCategoryById = asyncHandler(async (req, res) => {
     const id = req.params.id
@@ -12,11 +13,23 @@ const getCategoryById = asyncHandler(async (req, res) => {
 const getAllCategories = asyncHandler(async (req, res) => {
     const category = await Category.find()
     res.json(category)
-})
+}) 
+function fullUrl(req, imageName) {
+    return url.format({
+        protocol: req.protocol,
+        host: req.get('host'),
+        pathname: `/uploads/${imageName}`
+    });
+}
 const addCategory = asyncHandler(async (req, res) => {
     const { errors } = validateCategory(req.body);
     if (errors) return res.send(errors.details[0].message).status(400);
-    const newCategory = await Category.create(req.body);
+    const newCategory = new Category({
+        title: req.body.title,
+        description: req.body.description,
+        imageUrl: req.file ? fullUrl(req, req.file.filename) : " ",
+    });
+    await newCategory.save()
     res.json(newCategory).sendStatus(200)
 })
 const updateCategory = asyncHandler(async (req, res) => {
