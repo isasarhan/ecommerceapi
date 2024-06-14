@@ -5,8 +5,10 @@ const app = express();
 const dotenv = require('dotenv');
 const routes = require("./start/routes.js");
 const cors = require("cors");
-app.use(cors());
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors());
 dotenv.config()
 dbConnect()
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

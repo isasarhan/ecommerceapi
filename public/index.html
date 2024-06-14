@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Routes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #e9ecef;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease-in-out;
+        }
+        li:hover {
+            background: #d4d8db;
+        }
+        a {
+            text-decoration: none;
+            color: #5783b1;
+            font-weight: bold;
+        }
+        p{
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available API Routes</h1>
+        <ul>
+            <li><a href="/api/product">Products route : /api/product</a></li>
+            <li><a href="/api/blog">Blogs route : /api/blog</a></li>
+            <li><a href="/api/order">Orders route : /api/order</a></li>
+            <li><a href="/api/cart">Cart route : /api/cart</a></li>
+            <li><a href="/api/category">Product Category route : /api/category</a></li>
+            <li><a href="/api/blogCategory">Blog Category route : /api/blogCategory</a></li>
+            <li><a href="/api/auth">Authentication route : /api/auth</a></li>
+        </ul>
+        <p>All CRUD operations are available</p>
+    </div>
+</body>
+</html>
