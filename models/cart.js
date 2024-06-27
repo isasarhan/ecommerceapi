@@ -7,9 +7,11 @@ const cartSchema = new Schema(
     orderby: { type: Schema.Types.ObjectId, ref: "User" },
     products: [
       {
+        _id: false,
         product: { type: Schema.Types.ObjectId, ref: "Product" },
         count: { type: Number, default: 1 },
-        color: String,
+        imgUrl: String,
+        title: String,
         price: Number,
       },
     ],

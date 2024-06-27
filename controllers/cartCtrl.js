@@ -1,7 +1,17 @@
 const asyncHandler = require("express-async-handler");
 const { Cart, validateCart } = require("../models/cart.js");
+const { User } = require("../models/user.js");
 const validateMongoDbId = require("../utils/validateMongodbId.js");
 
+const getCartByUserId = asyncHandler(async (req, res) => {
+    const id = req.params.id
+    validateMongoDbId(id)
+    const user = await User.findById(id)
+    if(!user) return res.send("user not found")
+    const cart = await Cart.findOne({ orderby: id })
+    if (!cart) return res.send('Cart not found').status(404)
+    res.json(cart).status(200)
+})
 const getCartById = asyncHandler(async (req, res) => {
     const id = req.params.id
     validateMongoDbId(id)
@@ -37,4 +47,4 @@ const deleteCartById = asyncHandler(async (req, res) => {
     res.json(deletedCart).status(200)
 })
 
-module.exports = { getCartById, getAllCarts, addCart, updateCart, deleteCartById }
+module.exports = { getCartById, getAllCarts, addCart, updateCart, deleteCartById ,getCartByUserId}
